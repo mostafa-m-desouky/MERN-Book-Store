@@ -1,7 +1,7 @@
 
 const express = require('express')
-// const config = require("./config")
-const config = require('dotenv').config()
+const config = require("./config")
+// const config = require('dotenv').config()
 const app = express()
 const mongoose = require('mongoose');
 const bookModel = require('./models/bookModel')
@@ -31,8 +31,8 @@ app.get('/', (request, response) => {
 app.use('/books', bookRoute)
 // config.PORT || process.env.PORT
 mongoose
-    .connect(process.env.mongoDB_URL, {dbName: "demo-db"})
-    // .connect(config.mongoDB_URL)
+    // .connect(process.env.mongoDB_URL, {dbName: "demo-db"})
+    .connect(config.mongoDB_URL)
     .then(() => {
         console.log("App Connected")
         app.listen(5000, () => {
